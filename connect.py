@@ -1,22 +1,22 @@
 import pyodbc
 
 #define sql connection
-ariconn_str = "DRIVER={ODBC Driver 13 for SQL Server};SERVER=your server ip;DATABASE=your database name;UID=username;PWD=password"
-ariconn = pyodbc.connect(ariconn_str)
-aricur = ariconn.cursor()
+conn_str = "DRIVER={ODBC Driver 13 for SQL Server};SERVER=your server ip;DATABASE=your database name;UID=username;PWD=password"
+conn = pyodbc.connect(conn_str)
+cur = ariconn.cursor()
 
 #execute sql
 table_name = 'test'
 sql = '''SELECT * FROM '''+ table_name 
-aricur.execute(sql)
-row = aricur.fetchall()
+cur.execute(sql)
+row = cur.fetchall()
 
 #print data
 for i in row:
     print(i)
 
-aricur.commit()     
+cur.commit()     
 
 #close connection
-aricur.close()
-ariconn.close()
+cur.close()
+conn.close()
